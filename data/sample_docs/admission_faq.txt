@@ -1,0 +1,120 @@
+COLLEGE ADMISSION FAQ - SAMPLE KNOWLEDGE BASE
+==============================================
+Source: Admissions Office | Category: General
+
+ELIGIBILITY CRITERIA
+---------------------
+B.Tech (Bachelor of Technology):
+- Minimum 60% marks in 10+2 (PCM - Physics, Chemistry, Mathematics)
+- Valid JEE Main score required for top colleges
+- Age limit: 17-25 years as on October 1st of admission year
+- SC/ST candidates get 5% relaxation in minimum marks
+
+MBA (Master of Business Administration):
+- Bachelor's degree in any discipline with minimum 50% marks
+- Valid CAT/MAT/XAT score required
+- Work experience of 0-2 years preferred (not mandatory for freshers)
+- Age limit: No upper age limit
+
+MCA (Master of Computer Applications):
+- B.Sc (CS/IT/Maths) or BCA or B.Tech with minimum 55% marks
+- Mathematics as one subject in graduation is mandatory
+
+APPLICATION DEADLINES
+----------------------
+- Application Portal Opens: July 15, 2026
+- Last Date for Online Application: August 31, 2026
+- Document Submission Deadline: September 10, 2026
+- Merit List (Round 1): September 20, 2026
+- Merit List (Round 2): October 5, 2026
+- Classes Begin: November 1, 2026
+
+IMPORTANT: Late applications will NOT be accepted under any circumstances.
+
+FEE STRUCTURE
+--------------
+B.Tech Programs:
+- Tuition Fee: ₹85,000 per year
+- Hostel Fee (if applicable): ₹45,000 per year (including mess)
+- Library & Lab Fee: ₹8,000 per year
+- Examination Fee: ₹2,500 per semester
+- Total (Day Scholar): ₹95,000 per year
+- Total (Hosteller): ₹1,40,000 per year
+
+MBA Programs:
+- Tuition Fee: ₹1,20,000 per year
+- Hostel Fee: ₹50,000 per year
+- Total (Day Scholar): ₹1,30,000 per year
+- Total (Hosteller): ₹1,80,000 per year
+
+Scholarships: Merit-cum-means scholarships available for students with >85% in 10+2.
+SC/ST/OBC students eligible for government fee waivers — contact financial aid office.
+
+COURSES OFFERED
+----------------
+Engineering:
+1. B.Tech Computer Science & Engineering (CSE) — 120 seats
+2. B.Tech Electronics & Communication (ECE) — 60 seats
+3. B.Tech Mechanical Engineering (ME) — 60 seats
+4. B.Tech Civil Engineering (CE) — 60 seats
+5. B.Tech Artificial Intelligence & ML (AIML) — 60 seats (new from 2024)
+
+Management:
+1. MBA (Marketing / Finance / HR / Operations) — 120 seats
+2. BBA (Bachelor of Business Administration) — 60 seats
+
+Computer Applications:
+1. MCA (Master of Computer Applications) — 60 seats
+2. BCA (Bachelor of Computer Applications) — 60 seats
+
+HOSTEL INFORMATION
+-------------------
+- Separate hostels for boys and girls
+- 24/7 security with CCTV surveillance
+- Wi-Fi enabled campus (50 Mbps fiber connection)
+- Mess facility with vegetarian and non-vegetarian options
+- Warden available on campus round-the-clock
+- Laundry, gym, and recreation room facilities
+- Room types: Double sharing (standard), Single room (on request, extra ₹15,000/year)
+- Application for hostel: Submit along with admission form or within 15 days of admission
+
+CONTACT INFORMATION
+--------------------
+Admissions Office:
+- Phone: +91-40-XXXX-XXXX (Mon–Sat, 9 AM – 5 PM)
+- Email: admissions@college.edu.in
+- Address: Main Building, Room 101, Campus Road, Hyderabad - 500032
+
+For Hostel Queries: hostel@college.edu.in
+For Scholarship Queries: scholarships@college.edu.in
+For Technical Issues (portal): helpdesk@college.edu.in
+
+DOCUMENTS REQUIRED FOR ADMISSION
+----------------------------------
+1. 10th Marksheet (original + 2 photocopies)
+2. 12th Marksheet (original + 2 photocopies)
+3. Transfer Certificate (TC) from previous institution
+4. Migration Certificate (if applicable)
+5. Caste Certificate (SC/ST/OBC — for reservation benefits)
+6. Income Certificate (for scholarship applicants)
+7. Passport-size photographs (6 copies)
+8. Aadhar Card (original + photocopy)
+9. JEE/CAT/MAT score card (original)
+10. Medical fitness certificate from a registered doctor
+
+PLACEMENT STATISTICS (2024-25)
+--------------------------------
+- Overall Placement Rate: 87%
+- Highest Package: ₹24 LPA (Computer Science)
+- Average Package (CSE): ₹8.5 LPA
+- Average Package (MBA): ₹7.2 LPA
+- Top Recruiters: Infosys, TCS, Wipro, Cognizant, Deloitte, HCL, Amazon (for select branches)
+- Campus drive season: November – February every year
+
+ACADEMIC CALENDAR 2026-27
+---------------------------
+- Odd Semester: November 2026 – March 2027
+- Even Semester: April 2027 – August 2027
+- Mid-semester exams: Every 6 weeks
+- End-semester exams: Last 2 weeks of semester
+- Summer internship window: May – July (mandatory for MBA, optional for B.Tech)
