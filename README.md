@@ -2,7 +2,7 @@
 
 > An AI-powered chatbot for college admission queries using Retrieval-Augmented Generation (RAG) pipeline.
 
-**Built by:** Rahul Ramavath  
+  
 **Domain:** NLP · Information Retrieval · LLMs  
 **Stack:** Python · ChromaDB · Sentence Transformers · FastAPI · Streamlit
 
