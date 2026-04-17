@@ -29,7 +29,7 @@ def load_text_files(directory: Path) -> list[dict]:
             "source": txt_file.name,
             "category": txt_file.stem.replace("_", " ").title()
         })
-    print(f"✅ Loaded {len(documents)} document(s) from {directory}")
+    print(f"[OK] Loaded {len(documents)} document(s) from {directory}")
     return documents
 
 
@@ -58,7 +58,7 @@ def build_vector_store(documents: list[dict]) -> chromadb.Collection:
     # Drop existing collection if re-ingesting
     try:
         client.delete_collection(COLLECTION_NAME)
-        print(f"🗑️  Deleted existing collection '{COLLECTION_NAME}'")
+        print(f"[DELETED] Deleted existing collection '{COLLECTION_NAME}'")
     except Exception:
         pass
 
@@ -92,18 +92,18 @@ def build_vector_store(documents: list[dict]) -> chromadb.Collection:
             metadatas=all_metas[i:i + batch_size]
         )
 
-    print(f"✅ Indexed {len(all_chunks)} chunks into ChromaDB at '{CHROMA_DIR}'")
+    print(f"[OK] Indexed {len(all_chunks)} chunks into ChromaDB at '{CHROMA_DIR}'")
     return collection
 
 
 def main():
-    print("\n🚀 Starting document ingestion...\n")
+    print("\n[START] Starting document ingestion...\n")
     documents = load_text_files(DATA_DIR)
     if not documents:
-        print("❌ No documents found. Add .txt files to data/sample_docs/")
+        print("[ERROR] No documents found. Add .txt files to data/sample_docs/")
         sys.exit(1)
     collection = build_vector_store(documents)
-    print(f"\n✅ Done! Collection has {collection.count()} chunks ready for retrieval.\n")
+    print(f"\n[OK] Done! Collection has {collection.count()} chunks ready for retrieval.\n")
 
 
 if __name__ == "__main__":
