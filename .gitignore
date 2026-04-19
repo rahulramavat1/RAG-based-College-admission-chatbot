@@ -30,3 +30,13 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Extra
+frontend/node_modules/
+faiss_index/
+.agent/
+*.log
+*.txt
+!requirements.txt
+!README.md
+!frontend/README.md

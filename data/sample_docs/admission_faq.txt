@@ -1,120 +1,95 @@
-COLLEGE ADMISSION FAQ - SAMPLE KNOWLEDGE BASE
-==============================================
-Source: Admissions Office | Category: General
+COLLEGE ADMISSION FAQ - ACADEMIC YEAR 2024-25
 
-ELIGIBILITY CRITERIA
----------------------
-B.Tech (Bachelor of Technology):
-- Minimum 60% marks in 10+2 (PCM - Physics, Chemistry, Mathematics)
-- Valid JEE Main score required for top colleges
-- Age limit: 17-25 years as on October 1st of admission year
-- SC/ST candidates get 5% relaxation in minimum marks
+=== B.Tech (Bachelor of Technology) ===
 
-MBA (Master of Business Administration):
-- Bachelor's degree in any discipline with minimum 50% marks
-- Valid CAT/MAT/XAT score required
-- Work experience of 0-2 years preferred (not mandatory for freshers)
-- Age limit: No upper age limit
+Q: What are the eligibility criteria for B.Tech admission?
+A: Candidates must have passed 10+2 (or equivalent) with Physics, Chemistry, and Mathematics as compulsory subjects with a minimum aggregate of 60% marks. SC/ST/OBC candidates get a 5% relaxation. Valid JEE Main score is required.
 
-MCA (Master of Computer Applications):
-- B.Sc (CS/IT/Maths) or BCA or B.Tech with minimum 55% marks
-- Mathematics as one subject in graduation is mandatory
+Q: What is the last date to apply for B.Tech?
+A: The last date to apply for B.Tech is July 15, 2024. Applications received after this date will not be considered. Apply online at admissions.college.edu.
 
-APPLICATION DEADLINES
-----------------------
-- Application Portal Opens: July 15, 2026
-- Last Date for Online Application: August 31, 2026
-- Document Submission Deadline: September 10, 2026
-- Merit List (Round 1): September 20, 2026
-- Merit List (Round 2): October 5, 2026
-- Classes Begin: November 1, 2026
+Q: What is the application fee for B.Tech?
+A: The application fee is Rs. 1,000 for General/OBC candidates and Rs. 500 for SC/ST/PWD candidates. Fee is non-refundable.
 
-IMPORTANT: Late applications will NOT be accepted under any circumstances.
+Q: What documents are required for B.Tech admission?
+A: Required documents: 10th and 12th mark sheets and certificates, JEE Main scorecard, transfer certificate, migration certificate, character certificate, 6 passport size photographs, Aadhar card, caste certificate (if applicable).
 
-FEE STRUCTURE
---------------
-B.Tech Programs:
-- Tuition Fee: ₹85,000 per year
-- Hostel Fee (if applicable): ₹45,000 per year (including mess)
-- Library & Lab Fee: ₹8,000 per year
-- Examination Fee: ₹2,500 per semester
-- Total (Day Scholar): ₹95,000 per year
-- Total (Hosteller): ₹1,40,000 per year
+Q: What is the B.Tech fee structure?
+A: Tuition fee: Rs. 1,20,000 per year. Development fee: Rs. 15,000 per year. Exam fee: Rs. 5,000 per year. Total annual fee: approximately Rs. 1,40,000. Fee is subject to revision.
 
-MBA Programs:
-- Tuition Fee: ₹1,20,000 per year
-- Hostel Fee: ₹50,000 per year
-- Total (Day Scholar): ₹1,30,000 per year
-- Total (Hosteller): ₹1,80,000 per year
+=== MBA (Master of Business Administration) ===
 
-Scholarships: Merit-cum-means scholarships available for students with >85% in 10+2.
-SC/ST/OBC students eligible for government fee waivers — contact financial aid office.
+Q: What are the eligibility criteria for MBA?
+A: Candidates must hold a bachelor's degree in any discipline with minimum 50% aggregate marks from a recognized university. Final year students can also apply. Valid CAT/MAT/GMAT score required.
 
-COURSES OFFERED
-----------------
-Engineering:
-1. B.Tech Computer Science & Engineering (CSE) — 120 seats
-2. B.Tech Electronics & Communication (ECE) — 60 seats
-3. B.Tech Mechanical Engineering (ME) — 60 seats
-4. B.Tech Civil Engineering (CE) — 60 seats
-5. B.Tech Artificial Intelligence & ML (AIML) — 60 seats (new from 2024)
+Q: What is the last date to apply for MBA?
+A: The application deadline for MBA is April 30, 2024. Late applications may be considered on a case-by-case basis with a late fee of Rs. 500.
 
-Management:
-1. MBA (Marketing / Finance / HR / Operations) — 120 seats
-2. BBA (Bachelor of Business Administration) — 60 seats
+Q: What is the MBA fee structure?
+A: MBA total program fee is Rs. 3,50,000 for two years. This includes tuition, library, and lab fees. Hostel charges are separate.
 
-Computer Applications:
-1. MCA (Master of Computer Applications) — 60 seats
-2. BCA (Bachelor of Computer Applications) — 60 seats
+Q: What is the MBA admission process?
+A: The admission process involves: online application, written test (CAT/MAT score), group discussion, and personal interview. Final merit list is based on 40% academics + 30% entrance score + 30% GD/PI.
 
-HOSTEL INFORMATION
--------------------
-- Separate hostels for boys and girls
-- 24/7 security with CCTV surveillance
-- Wi-Fi enabled campus (50 Mbps fiber connection)
-- Mess facility with vegetarian and non-vegetarian options
-- Warden available on campus round-the-clock
-- Laundry, gym, and recreation room facilities
-- Room types: Double sharing (standard), Single room (on request, extra ₹15,000/year)
-- Application for hostel: Submit along with admission form or within 15 days of admission
+=== M.Tech (Master of Technology) ===
 
-CONTACT INFORMATION
---------------------
-Admissions Office:
-- Phone: +91-40-XXXX-XXXX (Mon–Sat, 9 AM – 5 PM)
-- Email: admissions@college.edu.in
-- Address: Main Building, Room 101, Campus Road, Hyderabad - 500032
+Q: What are the eligibility criteria for M.Tech?
+A: Candidates must hold a B.Tech/B.E. degree in the relevant discipline with minimum 60% marks. Valid GATE score is required. Students with GATE score above 500 are eligible for scholarship.
 
-For Hostel Queries: hostel@college.edu.in
-For Scholarship Queries: scholarships@college.edu.in
-For Technical Issues (portal): helpdesk@college.edu.in
+Q: What is the last date to apply for M.Tech?
+A: Application deadline for M.Tech is June 20, 2024. 
 
-DOCUMENTS REQUIRED FOR ADMISSION
-----------------------------------
-1. 10th Marksheet (original + 2 photocopies)
-2. 12th Marksheet (original + 2 photocopies)
-3. Transfer Certificate (TC) from previous institution
-4. Migration Certificate (if applicable)
-5. Caste Certificate (SC/ST/OBC — for reservation benefits)
-6. Income Certificate (for scholarship applicants)
-7. Passport-size photographs (6 copies)
-8. Aadhar Card (original + photocopy)
-9. JEE/CAT/MAT score card (original)
-10. Medical fitness certificate from a registered doctor
+Q: What is the M.Tech fee?
+A: M.Tech annual fee is Rs. 80,000 for GATE qualified students. Students with GATE scholarship receive a stipend of Rs. 12,400 per month from AICTE.
 
-PLACEMENT STATISTICS (2024-25)
---------------------------------
-- Overall Placement Rate: 87%
-- Highest Package: ₹24 LPA (Computer Science)
-- Average Package (CSE): ₹8.5 LPA
-- Average Package (MBA): ₹7.2 LPA
-- Top Recruiters: Infosys, TCS, Wipro, Cognizant, Deloitte, HCL, Amazon (for select branches)
-- Campus drive season: November – February every year
+=== B.Sc / M.Sc ===
 
-ACADEMIC CALENDAR 2026-27
----------------------------
-- Odd Semester: November 2026 – March 2027
-- Even Semester: April 2027 – August 2027
-- Mid-semester exams: Every 6 weeks
-- End-semester exams: Last 2 weeks of semester
-- Summer internship window: May – July (mandatory for MBA, optional for B.Tech)
+Q: What are the eligibility criteria for B.Sc?
+A: 10+2 with Physics, Chemistry, Mathematics/Biology with 55% aggregate. Merit-based admission.
+
+Q: What is the last date to apply for B.Sc?
+A: B.Sc application deadline is June 30, 2024.
+
+Q: What are the eligibility criteria for M.Sc?
+A: B.Sc in relevant subject with minimum 55% marks. Admission through entrance exam held in May every year.
+
+=== Hostel and Accommodation ===
+
+Q: How much is the hostel fee?
+A: Boys hostel fee: Rs. 60,000 per year (includes accommodation and mess charges). Girls hostel fee: Rs. 65,000 per year. AC room charges are Rs. 20,000 extra per year. Mess charges: Rs. 35,000 per year included.
+
+Q: Is hostel accommodation guaranteed?
+A: Hostel accommodation is available for first-year students on priority basis. Allotment is based on distance from hometown and merit. Out-of-state students are given priority.
+
+Q: What facilities are provided in the hostel?
+A: Facilities include: furnished rooms, 24/7 Wi-Fi, laundry service, gym, indoor games room, reading room, backup power supply, CCTV surveillance, and 24-hour security.
+
+=== Scholarships ===
+
+Q: What scholarships are available?
+A: Available scholarships: Merit scholarship (top 10% students get 25% fee waiver), Sports scholarship (state/national level players), SC/ST government scholarship, Minority scholarship, AICTE scholarship for GATE qualified students.
+
+Q: How to apply for scholarship?
+A: Scholarship applications must be submitted within 30 days of admission. Fill the scholarship form available at the accounts office or download from the college website. Attach all required documents including income certificate.
+
+=== Entrance Exams and Cutoffs ===
+
+Q: What is the JEE Main cutoff for B.Tech?
+A: General category cutoff: 75 percentile. OBC-NCL: 65 percentile. SC: 45 percentile. ST: 40 percentile. EWS: 65 percentile. Cutoffs may vary by branch.
+
+Q: Which branches are available in B.Tech?
+A: Available B.Tech branches: Computer Science and Engineering (CSE), Electronics and Communication Engineering (ECE), Mechanical Engineering (ME), Civil Engineering (CE), Electrical Engineering (EE), Information Technology (IT), Chemical Engineering (CHE).
+
+Q: What is the intake capacity for B.Tech CSE?
+A: B.Tech CSE intake: 120 seats (60 General, 30 OBC, 18 SC, 9 ST, 3 EWS). Lateral entry: 12 seats.
+
+=== Contact and Admission Office ===
+
+Q: Where is the admission office located?
+A: Admission office is located in the Administrative Block, Ground Floor, Room No. 101. Office hours: Monday to Saturday, 9:00 AM to 5:00 PM.
+
+Q: What is the contact number for admissions?
+A: Admission helpline: +91-9876543210, +91-9876543211. Email: admissions@college.edu. WhatsApp: +91-9876543212.
+
+Q: How can I check my admission status?
+A: Admission status can be checked online at admissions.college.edu using your application number and date of birth. Status is updated within 7 working days of document verification.

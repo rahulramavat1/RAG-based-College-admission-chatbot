@@ -1,178 +1,151 @@
 """
-rag_pipeline.py — Core Retrieval-Augmented Generation pipeline
-
-Handles:
-  1. Retrieving top-K relevant chunks from ChromaDB
-  2. Constructing a context-aware prompt
-  3. Generating a response (via OpenAI or built-in fallback mode)
+rag_pipeline.py — Core RAG pipeline using LangChain, FAISS, and Groq (LLaMA-3).
+Supports ChatGroq API and a built-in keyword-fallback mode.
 """
 
 import os
 import re
-from pathlib import Path
 from dotenv import load_dotenv
-import chromadb
-from chromadb.utils import embedding_functions
+
+from langchain_groq import ChatGroq
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain.chains import create_retrieval_chain
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.prompts import ChatPromptTemplate
 
 load_dotenv()
 
-# ── Config ────────────────────────────────────────────────────────────────────
-CHROMA_DIR = Path(__file__).parent.parent / "chroma_db"
-COLLECTION_NAME = "college_admissions"
-TOP_K = 4                        # number of chunks to retrieve
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+FAISS_INDEX_PATH = os.getenv("FAISS_INDEX_PATH", "./faiss_index")
+MODEL_NAME       = "all-MiniLM-L6-v2"
+GROQ_MODEL       = "llama-3.3-70b-versatile"
+TOP_K            = 5
 
+# ── Singleton FAISS index ─────────────────────────────────────────────
+_vectorstore = None
 
-# ── Vector Store Client ───────────────────────────────────────────────────────
-def get_collection():
-    embedding_fn = embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name="all-MiniLM-L6-v2"
-    )
-    client = chromadb.PersistentClient(path=str(CHROMA_DIR))
-    return client.get_collection(
-        name=COLLECTION_NAME,
-        embedding_function=embedding_fn
-    )
+def _get_vectorstore():
+    global _vectorstore
+    if _vectorstore is None:
+        embeddings = HuggingFaceEmbeddings(model_name=MODEL_NAME)
+        if not os.path.exists(FAISS_INDEX_PATH):
+            raise Exception(f"FAISS index not found at '{FAISS_INDEX_PATH}'. Run ingest.py first.")
+        # allow_dangerous_deserialization=True is safe for locally generated indices
+        _vectorstore = FAISS.load_local(FAISS_INDEX_PATH, embeddings, allow_dangerous_deserialization=True)
+    return _vectorstore
 
-
-# ── Retrieval ─────────────────────────────────────────────────────────────────
+# ── Retrieval ────────────────────────────────────────────────────────────────
 def retrieve(query: str, top_k: int = TOP_K) -> list[dict]:
-    """Return top-K relevant chunks for a user query."""
-    collection = get_collection()
-    results = collection.query(
-        query_texts=[query],
-        n_results=top_k,
-        include=["documents", "metadatas", "distances"]
-    )
-
+    """Return raw retrieved chunks for a query (useful for debugging)."""
+    vs = _get_vectorstore()
+    
+    docs_and_scores = vs.similarity_search_with_score(query, k=top_k)
     chunks = []
-    for doc, meta, dist in zip(
-        results["documents"][0],
-        results["metadatas"][0],
-        results["distances"][0]
-    ):
+    
+    # FAISS returns L2 distances. For cosine similarity, it requires L2 normalization beforehand. 
+    # To keep it simple, we just pass the distance as "score". 
+    # Note: Smaller score implies higher similarity in L2. We will invert it for a mock "similarity" looking score.
+    for d, dist in docs_and_scores:
         chunks.append({
-            "text": doc,
-            "source": meta.get("source", "unknown"),
-            "category": meta.get("category", ""),
-            "relevance": round(1 - dist, 3)   # cosine similarity score
+            "text": d.page_content,
+            "source": d.metadata.get("source", "unknown"),
+            "score": round(1 / (1 + float(dist)), 4)
         })
     return chunks
 
-
-# ── Prompt Builder ────────────────────────────────────────────────────────────
-def build_prompt(query: str, chunks: list[dict]) -> str:
-    context = "\n\n---\n\n".join(
-        f"[Source: {c['source']} | Relevance: {c['relevance']}]\n{c['text']}"
-        for c in chunks
-    )
-    return f"""You are an expert college admission counselor. Answer the student's question
-using ONLY the information provided in the context below. If the answer is not
-in the context, say "I don't have that information — please contact the admissions
-office directly."
-
-Be concise, friendly, and accurate. Include specific numbers, dates, or fees when available.
-
-CONTEXT:
-{context}
-
-STUDENT QUESTION: {query}
-
-ANSWER:"""
-
-
-# ── LLM Response (OpenAI) ─────────────────────────────────────────────────────
-def generate_openai(prompt: str) -> str:
-    from openai import OpenAI
-    client = OpenAI(api_key=OPENAI_API_KEY)
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=400,
-        temperature=0.2
-    )
-    return response.choices[0].message.content.strip()
-
-
-# ── Fallback Mode (No API Key) ────────────────────────────────────────────────
-def generate_fallback(query: str, chunks: list[dict]) -> str:
+# ── Generation: Keyword Fallback ─────────────────────────────────────────────
+def _generate_fallback(query: str, context_chunks: list[dict]) -> str:
     """
-    Smart fallback: extracts the most relevant sentences from retrieved chunks
-    without needing any external LLM API. Good for demos.
+    Smart keyword-matching fallback.
+    Finds the most relevant chunk and extracts the most relevant sentences.
     """
-    if not chunks:
-        return "I couldn't find relevant information for your query. Please contact the admissions office."
+    if not context_chunks:
+        return (
+            "I'm sorry, I couldn't find relevant information for your question. "
+            "Please contact the admissions office directly."
+        )
 
-    query_lower = query.lower()
-    query_words = set(re.findall(r'\w+', query_lower)) - {
-        "what", "is", "the", "are", "how", "much", "when", "where",
-        "can", "i", "do", "for", "a", "an", "of", "in", "to", "and"
-    }
+    best = context_chunks[0]
+    text = best["text"]
 
-    # Score each sentence from the top chunks
-    scored_sentences = []
-    for chunk in chunks[:2]:
-        sentences = re.split(r'(?<=[.:\n])\s+', chunk["text"])
-        for sent in sentences:
-            sent = sent.strip()
-            if len(sent) < 20:
-                continue
-            sent_words = set(re.findall(r'\w+', sent.lower()))
-            overlap = len(query_words & sent_words)
-            if overlap > 0:
-                scored_sentences.append((overlap, sent))
+    query_words = set(re.sub(r"[^a-z0-9 ]", "", query.lower()).split())
+    sentences   = re.split(r"(?<=[.?!])\s+", text)
 
-    scored_sentences.sort(reverse=True, key=lambda x: x[0])
-    top_sentences = [s for _, s in scored_sentences[:4]]
+    def score_sentence(s):
+        words = set(re.sub(r"[^a-z0-9 ]", "", s.lower()).split())
+        return len(query_words & words)
 
-    if top_sentences:
-        answer = " ".join(top_sentences)
-        source = chunks[0]["source"].replace(".txt", "").replace("_", " ").title()
-        return f"{answer}\n\n📎 Source: {source}"
-    else:
-        # Just return the most relevant chunk
-        best = chunks[0]["text"][:500]
-        return f"Here's what I found:\n\n{best}\n\n📎 Source: {chunks[0]['source']}"
+    scored = sorted(sentences, key=score_sentence, reverse=True)
+    top_sentences = [s.strip() for s in scored[:3] if s.strip()]
+    answer        = " ".join(top_sentences)
 
+    if not answer:
+        answer = text[:400]
 
-# ── Main RAG Entry Point ──────────────────────────────────────────────────────
-def answer(query: str) -> dict:
+    return answer
+
+# ── Public API ───────────────────────────────────────────────────────────────
+def answer_query(query: str) -> dict:
     """
-    Full RAG pipeline: retrieve → build prompt → generate answer.
-    Returns a dict with answer text + source chunks.
+    Main entry point. Returns:
+        {
+          "answer":   str,
+          "sources":  list[str],
+          "chunks":   list[dict],
+          "mode":     "groq" | "fallback"
+        }
     """
-    chunks = retrieve(query)
+    try:
+        chunks = retrieve(query)
+    except Exception as e:
+        print(f"Error retrieving from FAISS: {e}")
+        return {
+            "answer": f"Retrieval error. Have you run ingestion? Error: {e}",
+            "sources": [],
+            "chunks": [],
+            "mode": "error"
+        }
 
-    if OPENAI_API_KEY:
-        try:
-            prompt = build_prompt(query, chunks)
-            response_text = generate_openai(prompt)
-            mode = "openai"
-        except Exception as e:
-            response_text = generate_fallback(query, chunks)
-            mode = f"fallback (openai error: {e})"
-    else:
-        response_text = generate_fallback(query, chunks)
-        mode = "fallback"
+    groq_api_key = os.getenv("GROQ_API_KEY", "").strip()
+    mode = "groq" if groq_api_key and not groq_api_key.startswith("gsk_your") else "fallback"
+
+    try:
+        if mode == "groq":
+            vs = _get_vectorstore()
+            retriever = vs.as_retriever(search_kwargs={"k": TOP_K})
+            llm = ChatGroq(temperature=0.2, model_name=GROQ_MODEL, groq_api_key=groq_api_key)
+
+            system_prompt = (
+                "You are a helpful college admissions assistant. "
+                "Answer the student's question using ONLY the information provided in the context below. "
+                "If the answer is not in the context, say 'I don't have information about that. "
+                "Please contact the admissions office directly.' "
+                "Be concise, clear, and friendly.\n\n"
+                "Context:\n{context}"
+            )
+
+            prompt = ChatPromptTemplate.from_messages([
+                ("system", system_prompt),
+                ("human", "{input}"),
+            ])
+
+            question_answer_chain = create_stuff_documents_chain(llm, prompt)
+            rag_chain = create_retrieval_chain(retriever, question_answer_chain)
+
+            response = rag_chain.invoke({"input": query})
+            answer = response["answer"].strip()
+        else:
+            answer = _generate_fallback(query, chunks)
+    except Exception as e:
+        print(f"LLM Generation Error: {e}")
+        answer = _generate_fallback(query, chunks)
+        mode   = "fallback"
+
+    sources = list({c["source"] for c in chunks})
 
     return {
-        "answer": response_text,
-        "sources": [{"source": c["source"], "relevance": c["relevance"]} for c in chunks],
-        "mode": mode,
-        "chunks_retrieved": len(chunks)
+        "answer":  answer,
+        "sources": sources,
+        "chunks":  chunks,
+        "mode":    mode,
     }
-
-
-# ── Quick CLI test ─────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    test_queries = [
-        "What is the last date to apply?",
-        "How much is the hostel fee for B.Tech?",
-        "What are the eligibility criteria for MBA?",
-        "What documents do I need for admission?"
-    ]
-    for q in test_queries:
-        print(f"\n🎓 Q: {q}")
-        result = answer(q)
-        print(f"💬 A: {result['answer']}")
-        print(f"📚 Mode: {result['mode']}")
